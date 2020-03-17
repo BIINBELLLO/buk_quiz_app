@@ -1,0 +1,7 @@
+{
+  "name": "Team Lady Zee GSP App",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
