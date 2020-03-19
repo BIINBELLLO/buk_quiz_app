@@ -1,0 +1,79 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="home/courses"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Quiz Instructions</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button routerLink="">
+        <ion-icon name="home-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <div>
+          <h5 class="mt-3">Select your preferences</h5>
+          <div class="mt-3 text-info">
+            <p class="mb-2">You are about to take a quiz on:</p>
+            <p><span class="text-danger text-uppercase">{{selectedCourse.course_title}}</span></p>
+            <p class="mt-2">The quiz is timed at 10 minutes and you are expected to answer 20 multiple choice questions, Upon completion of the 10 minutes, any selected answer will be submitted and results will be displayed, you can also click on the submit button if you wish to end the quiz before the time elapse.</p>
+            <!-- <p class="mt-2">
+              Enter your name in the field below so your scores will be recorded on the leaders score board. Thank you.
+            </p> -->
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <button class="btn btn-outline-primary btn-block px-3 mt-3" (click)="commenceQuiz()">Start Quiz</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="mt-3">
+    <h3>Course Leaderboard</h3>
+    <h6>Challenge some of the top leaders on this course, see the list below <span class="text-danger">Note: Leadersboard requires internet</span></h6>
+    <ion-list>
+      <ion-item *ngFor="let item of selectedCourseLeaderBoard">
+        <ion-avatar class="mr-3">
+          <img [src]="humanIcon" />
+        </ion-avatar>
+        <ion-label>{{item.name}}</ion-label>
+        <ion-buttons slot="end">
+          <ion-button color="success">
+            {{item.score}}%
+          </ion-button>
+        </ion-buttons>
+      </ion-item>
+    </ion-list>
+    <div class="text-center" *ngIf="selectedCourseLeaderBoard.length == 0 && !loading">
+      <p class="text-info">No Scores for this course, or poor internet connection!!</p>
+    </div>
+  </div>
+  <!-- <ion-grid fixed>
+    <ion-row class="justify-content-center">
+      <ion-col size="12">
+      <ion-item>
+        <ion-label position="floating">Your Name Here</ion-label>
+        <ion-input type="text"></ion-input>
+      </ion-item>
+      <p class="mt-3 "><span class="text-danger">Note: </span> While the quiz can be taken without an internet connection, it is required to save your name and score to the leader board after completion of the quiz. </p>
+      <button class="btn btn-outline-primary btn-block px-3 mt-3" (click)="commenceQuiz()">Start Quiz</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+</ion-content>
+
+<ion-footer>
+  <ion-toolbar>
+    <ion-title class="d-flex footer-title">
+      <span class="small-text-sponsor">Sponsored By: <span class="text-success">Lady Zee</span></span>
+      <span class="small-text-developer">Developed By: <span class="text-success">Binbello</span></span>
+    </ion-title>
+  </ion-toolbar>
+</ion-footer>

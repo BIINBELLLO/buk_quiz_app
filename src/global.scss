@@ -24,3 +24,17 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+.footer-title {
+    display: flex;
+    justify-content: space-between;
+    .small-text-sponsor {
+      font-size: 0.7rem;
+      float: left;
+    }
+    .small-text-developer {
+      font-size: 0.7rem;
+      float: right;
+    }
+  }

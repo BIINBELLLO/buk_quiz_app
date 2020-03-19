@@ -1,3 +1,38 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
+  <ion-menu side="start" type="overlay" contentId = "main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>GSP Quiz App</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-list>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/home/courses">
+            <ion-icon slot="start" name="list-outline"></ion-icon>
+            <ion-label>Take a Quiz</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" routerLink="/bookings">
+            <ion-icon slot="start" name="bar-chart-outline"></ion-icon>
+            <ion-label>QUiz Leaderboard</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" button>
+            <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label>About LadyZee</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        <ion-menu-toggle>
+          <ion-item lines="none" button>
+            <ion-icon slot="start" name="information-circle-outline"></ion-icon>
+            <ion-label>App Info</ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main-content"></ion-router-outlet>
 </ion-app>

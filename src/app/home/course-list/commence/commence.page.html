@@ -1,0 +1,172 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button (click)="presentCancelAlertConfirm()">
+        <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Taking Quiz</ion-title>
+    <ion-buttons slot="primary">
+      <ion-button (click)="presentCancelAlertConfirm()">
+        <ion-icon name="home-outline" slot="icon-only"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <ion-grid fixed>
+    <ion-row class="d-flex justify-content-between">
+      <ion-col size="12">
+        <div class="cont d-flex justify-content-between">
+          <div class="__details">
+            <h5 class="header text-uppercase">Title</h5>
+            <p class="detail font-weight-bold mt-1 text-success">{{selectedCourse.course_title}}</p>
+          </div>
+          <div class="__details">
+            <h5 class="header text-uppercase">Time Left</h5>
+            <p class="detail font-weight-bold mt-1  text-success">{{timeToDisplay}}</p>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid fixed>
+    <ion-row>
+      <ion-col size="12">
+        <div class="switch_questions mb-2">
+          <div>
+            <h6>Questions Attempted</h6>
+            <ion-list>
+              <ion-radio-group name="questionsAttempted" value="hide" #QstnAttmpt>
+                <ion-item>
+                  <ion-label>Show</ion-label>
+                  <ion-radio value="show"></ion-radio>
+                </ion-item>
+                <ion-item>
+                  <ion-label>Hide</ion-label>
+                  <ion-radio value="hide"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+          </div>
+          <ion-grid fixed *ngIf="QstnAttmpt.value == 'show'">
+            <ion-row>
+              <ion-col size="2" *ngFor="let item of randomCourseList; let i=index">
+                <button class="btn btn-outline-secondary" (click)="QSlides.slideTo(i)" [class.btn-outline-success]="checkQuestionStatus(item.quiz_no)">
+                  <!-- <ion-icon slot="start" name="checkmark-outline"></ion-icon> -->
+                  {{i+1}}
+                </button>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+        <ion-slides mode="md" [options]="slideOptions" #QSlides>
+          <ion-slide *ngFor="let question of randomCourseList; let i=index">
+            <ion-card class="question-card">
+              <ion-card-header>
+                <ion-card-subtitle>Question {{i+1}}</ion-card-subtitle>
+              </ion-card-header>
+              <ion-card-content>
+                <div class="__question">
+                  <p class="">{{question.question}}</p>
+                </div>
+                <ion-list>
+                  <ion-radio-group (ionChange)="getSelectedOption($event)">
+                    <ion-list-header>
+                      <ion-label color="success">
+                        Options
+                      </ion-label>
+                    </ion-list-header>
+                
+                    <ion-item class="d-flex justify-content-between">
+                      <ion-label>(A). {{question.option1}}</ion-label>
+                      <ion-radio [value]="{choice: question.option1, qstn: question.quiz_no, qstnVal: question.question, answer: question.answer }" color="success"></ion-radio>
+                    </ion-item>
+                
+                    <ion-item>
+                      <ion-label>(B). {{question.option2}}</ion-label>
+                      <ion-radio [value]="{choice: question.option2, qstn: question.quiz_no, qstnVal: question.question, answer: question.answer }" color="success"></ion-radio>
+                    </ion-item>
+                
+                    <ion-item>
+                      <ion-label>(C). {{question.option3}}</ion-label>
+                      <ion-radio [value]="{choice: question.option3, qstn: question.quiz_no, qstnVal: question.question, answer: question.answer }" color="success"></ion-radio>
+                    </ion-item>
+                
+                    <ion-item>
+                      <ion-label>(D). {{question.option4}}</ion-label>
+                      <ion-radio [value]="{choice: question.option4, qstn: question.quiz_no, qstnVal: question.question, answer: question.answer }" color="success"></ion-radio>
+                    </ion-item>
+                  </ion-radio-group>
+                </ion-list>
+              </ion-card-content>
+            </ion-card>
+          </ion-slide>
+        </ion-slides>
+        <div class="mb-2 d-flex justify-content-between">
+          <button class="btn btn-outline-success" (click)="QSlides.slidePrev()">
+            <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+            Previous
+          </button>
+          <button class="btn btn-outline-success" (click)="QSlides.slideNext()">
+            Next
+            <ion-icon slot="primary" name="arrow-forward-outline"></ion-icon>
+          </button>
+        </div>
+        <ion-button (click)="presentAlertConfirm()" class="mt-4" expand="block" color="success">
+          Submit Quiz
+        </ion-button>
+        <!-- <ion-card>
+          <ion-card-header>
+            <ion-card-subtitle>Question 1</ion-card-subtitle>
+          </ion-card-header>
+          <ion-card-content>
+            <div class="__question">
+              <p class="">{{randomCourseList[0].question}}</p>
+            </div>
+            <ion-list>
+              <ion-radio-group (ionChange)="getSelectedOption($event)">
+                <ion-list-header>
+                  <ion-label color="success">
+                    Options
+                  </ion-label>
+                </ion-list-header>
+            
+                <ion-item>
+                  <ion-label>(A). {{randomCourseList[0].option1}}</ion-label>
+                  <ion-radio [value]="randomCourseList[0].option1" color="success"></ion-radio>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label>(B). {{randomCourseList[0].option2}}</ion-label>
+                  <ion-radio [value]="randomCourseList[0].option2" color="success"></ion-radio>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label>(C). {{randomCourseList[0].option3}}</ion-label>
+                  <ion-radio [value]="randomCourseList[0].option3" color="success"></ion-radio>
+                </ion-item>
+            
+                <ion-item>
+                  <ion-label>(D). {{randomCourseList[0].option4}}</ion-label>
+                  <ion-radio [value]="randomCourseList[0].option4" color="success"></ion-radio>
+                </ion-item>
+              </ion-radio-group>
+            </ion-list>
+            <div class="mt-4 d-flex justify-content-between">
+              <button class="btn btn-outline-success">
+                <ion-icon slot="start" name="arrow-back-outline"></ion-icon>
+                Previous
+              </button>
+              <button class="btn btn-outline-success">
+                Next
+                <ion-icon slot="primary" name="arrow-forward-outline"></ion-icon>
+              </button>
+            </div>
+          </ion-card-content>
+        </ion-card> -->
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
