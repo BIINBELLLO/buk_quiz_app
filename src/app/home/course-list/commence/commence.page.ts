@@ -76,8 +76,8 @@ export class CommencePage implements OnInit {
 
   quizFinished = false;
 
-  clientTimeLeft = 60;
-  serverTimeLeft = 60;
+  clientTimeLeft = 600;
+  serverTimeLeft = 600;
 
   timeToDisplay = '';
 
