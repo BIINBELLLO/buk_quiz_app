@@ -13,6 +13,7 @@ export class StartPage implements OnInit {
   selectedCourse = null;
   loading = false;
   leaderBoard = [];
+  safeToProceed = false;
   coursesList = [
     {
     course_id: 1,
@@ -76,6 +77,7 @@ export class StartPage implements OnInit {
       }
     })
     this.fetchScores();
+    this.checkCourseQuestionAvailability();
   }
 
   fetchScores() {
@@ -97,6 +99,17 @@ export class StartPage implements OnInit {
 
   commenceQuiz() {
     this.router.navigate(['commence', this.selectedCourse.course_id], {relativeTo: this.activeRoute})
+  }
+
+  checkCourseQuestionAvailability() {
+    let cid = this.selectedCourse.course_id;
+    let rez = courses.filter(el => {
+      return el.course_id == cid;
+    })
+
+    if(rez.length > 20) {
+      this.safeToProceed = true;
+    }
   }
 
 }

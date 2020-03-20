@@ -31,7 +31,10 @@
     </ion-row>
     <ion-row>
       <ion-col size="12">
-        <button class="btn btn-outline-primary btn-block px-3 mt-3" (click)="commenceQuiz()">Start Quiz</button>
+        <button class="btn btn-outline-primary btn-block px-3 mt-3" [disabled]="!safeToProceed" (click)="commenceQuiz()">Start Quiz</button>
+        <small class="text-danger text-center" *ngIf="!safeToProceed">
+          Sorry, no questions available for this course yet, Questions will be added in the next version. Thanks
+        </small>
       </ion-col>
     </ion-row>
   </ion-grid>
