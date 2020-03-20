@@ -20,6 +20,14 @@ import { HomePage } from './home.page';
         path: 'courses', 
         loadChildren: () => import('./course-list/course-list.module').then(m => m.CourseListPageModule)
       },
+      {
+        path: 'about', 
+        loadChildren: () => import('./app-info/app-info.module').then(m => m.AppInfoPageModule)
+      },
+      {
+        path: 'lady', 
+        loadChildren: () => import('./lady-zee-info/lady-zee-info.module').then(m => m.LadyZeeInfoPageModule)
+      },
     ])
   ],
   declarations: [HomePage]

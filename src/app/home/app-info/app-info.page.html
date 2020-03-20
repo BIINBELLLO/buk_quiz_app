@@ -1,9 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>app-info</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-title>About App & Developer</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+  <ion-card>
+    <ion-card-content><div class="mt-3">
+      <h5 class="text-success">App Info</h5>
+      <p class="text-info">Ver. 1.0</p>
+    </div>
+      <img src="../../../assets/img/dev_binbello.jpg" alt="">
+      <div class="mt-3">
+        <h5 class="text-success">Developer Info</h5>
+        <p class="text-info m-0">Bello Abdulmateen</p>
+        <small class="text-secondary m-0">CEO/Co-Founder Alteratives Systems</small>
+        <ion-list>
+          <ion-list-header>
+            <ion-label>Contact Info</ion-label>
+          </ion-list-header>
+          <ion-item>
+            <ion-icon name="call-outline" slot="start"></ion-icon>
+            <ion-label>08166881307 -- 08098402649</ion-label>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="mail-outline" slot="start"></ion-icon>
+            <ion-label>abdulmateenbinbello@gmail.com</ion-label>
+          </ion-item>
+        </ion-list>
+      </div>
+    </ion-card-content>
+  </ion-card>
 </ion-content>
