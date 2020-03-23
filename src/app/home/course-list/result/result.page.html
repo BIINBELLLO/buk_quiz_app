@@ -61,8 +61,8 @@
         <div class="col-12 mt-3">
           <ion-button expand="block" (click)="toggleShowSave()">
             <ion-icon slot="start" name="save-outline"></ion-icon>
-            <span *ngIf="!showSave">Show Save Result To Leaderboard</span>
-            <span *ngIf="showSave">Hide Save Result To Leaderboard</span>
+            <span *ngIf="!showSave" class="showSaveResult">Show Save Result To Leaderboard</span>
+            <span *ngIf="showSave" class="showSaveResult">Hide Save Result To Leaderboard</span>
           </ion-button>
         </div>
         <div class="col-12 mt-3" *ngIf="showSave">

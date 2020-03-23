@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-course-list',
@@ -52,7 +53,7 @@ export class CourseListPage implements OnInit {
     course_title: 'Venture, Creation and Growth'
     },
   ];
-  constructor(private router: Router, private activeRoute: ActivatedRoute) { }
+  constructor(private router: Router, private location: Location, private activeRoute: ActivatedRoute) { }
 
 
   ngOnInit() {
@@ -66,6 +67,10 @@ export class CourseListPage implements OnInit {
   goToCourse(id) {
     console.log(id);
     this.router.navigate([id], {relativeTo: this.activeRoute})
+  }
+
+  goBack() {
+    this.location.back();
   }
 
 }

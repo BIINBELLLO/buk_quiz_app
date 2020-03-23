@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import courses from '../../../../data/quiz_table.json';
 import { ScoreService } from 'src/app/_services/score.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-start',
@@ -59,7 +60,7 @@ export class StartPage implements OnInit {
   humanIcon = '../../../../assets/img/graduated.svg';
   selectedCourseLeaderBoard = [];
 
-  constructor(private activeRoute: ActivatedRoute, private router: Router, private _score: ScoreService) { }
+  constructor(private activeRoute: ActivatedRoute, private router: Router, private _score: ScoreService, private location: Location) { }
 
   ngOnInit() {
     this.activeRoute.paramMap.subscribe(paramMap => {
@@ -95,6 +96,13 @@ export class StartPage implements OnInit {
       return el.course == this.selectedCourse.course_id;
     })
     this.selectedCourseLeaderBoard.sort((a, b) => b.score - a.score);
+    if(this.selectedCourseLeaderBoard.length > 10) {
+      this.selectedCourseLeaderBoard = this.selectedCourseLeaderBoard.slice(0, 10);
+    }
+  }
+
+  goBack() {
+    this.location.back();
   }
 
   commenceQuiz() {
